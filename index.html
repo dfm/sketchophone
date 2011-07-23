@@ -23,11 +23,25 @@
 
     <!-- Use this url for this page... search engines
     <link rel="canonical" href="" />-->
-    
+
+    <link rel="stylesheet" type="text/css" href="css/sketchophone.css" />
 </head>
 <body>
 
+    <div id="container">
+        <header>
+            <ul id="topmenu">
+                <li><a href="#" onmouseup="javascript:window.undo();">Undo</a></li>
+                <li><a href="#" onmouseup="javascript:window.clear();">Clear</a></li>
+                <li>Color</li>
+            </ul>
+        </header>
+        <canvas id="canvas" width="485" height="300"></canvas>
+        <input class="color"></input>
+    </div>
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="jscolor/jscolor.js"></script>    
     <script type="text/javascript" src="js/sketchophone.js"></script>
     <!--<script>
         var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview'],['_trackPageLoadTime']];

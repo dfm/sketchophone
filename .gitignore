@@ -1,3 +1,4 @@
-*.js
-
+js/*.js
+css/*.css
+css/.sass-cache/*
 

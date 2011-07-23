@@ -1,0 +1,79 @@
+/*-------------------------------------------------------------
+      Reset, font normalization and base styles from
+      https://github.com/paulirish/html5-boilerplate
+------------------------------------------------------------ */
+
+/* 
+    (1) html5doctor.com Reset Stylesheet
+        (Eric Meyer's Reset Reloaded + HTML5 baseline)
+    
+    v1.6.1 2010-09-17 | Authors: Eric Meyer & Richard Clark
+    html5doctor.com/html-5-reset-stylesheet/
+*/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+input, select { vertical-align: middle; }
+pre, code, kbd, samp {
+    font-family: monospace, sans-serif;
+}
+
+
+/* -------------- *
+ * SKETCH-O-PHONE *
+ * -------------- */
+
+$canvas-width:  485px;
+$canvas-height: 300px;
+
+body {
+    font-size: 13px;
+    line-height: 18px;
+    font-family: "helvetica neue", helvetica, arial, sans-serif;
+    font-weight:200;
+    color: #777777;
+}
+
+
+#container {
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    width:$canvas-width;
+}
+
+#canvas {
+    cursor: crosshair;
+    width: $canvas-width;
+    height: $canvas-height;
+    border: 1px dotted black;
+    font-family:sans-serif;
+}
+
+#topmenu li {
+    display: inline;
+}
+
+input.color {
+    display: none;
+}
+
