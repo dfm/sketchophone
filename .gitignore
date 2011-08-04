@@ -1,4 +1,7 @@
 js/*.js
 css/*.css
-css/.sass-cache/*
+*.sass-cache*
+*.ai
+*.psd
+.DS_Store
 

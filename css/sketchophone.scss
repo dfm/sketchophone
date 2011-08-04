@@ -2,15 +2,6 @@
       Reset, font normalization and base styles from
       https://github.com/paulirish/html5-boilerplate
 ------------------------------------------------------------ */
-
-/* 
-    (1) html5doctor.com Reset Stylesheet
-        (Eric Meyer's Reset Reloaded + HTML5 baseline)
-    
-    v1.6.1 2010-09-17 | Authors: Eric Meyer & Richard Clark
-    html5doctor.com/html-5-reset-stylesheet/
-*/
-
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
@@ -41,39 +32,61 @@ pre, code, kbd, samp {
  * SKETCH-O-PHONE *
  * -------------- */
 
-$canvas-width:  485px;
-$canvas-height: 300px;
-
 body {
-    font-size: 13px;
-    line-height: 18px;
-    font-family: "helvetica neue", helvetica, arial, sans-serif;
-    font-weight:200;
-    color: #777777;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 100px;
+    color: #333333;
+    margin: 0px;
 }
 
+header {
+    text-align: center;
+}
+
+header p {
+    font-size: 28px;
+    line-height: 36px;
+    font-family: 'Annie Use Your Telescope', cursive;
+}
+
+header span {
+    font-size: 20px;
+}
 
 #container {
-    margin-top: 25px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0px;
-    width:$canvas-width;
+    text-align: center;
 }
 
 #canvas {
     cursor: crosshair;
-    width: $canvas-width;
-    height: $canvas-height;
     border: 1px dotted black;
     font-family:sans-serif;
 }
 
-#topmenu li {
-    display: inline;
+#topmenu {
+    text-align: center;
 }
 
-input.color {
-    display: none;
+#topmenu li {
+    margin-left: 5px;
+    margin-right: 10px;
+    display: inline;
+    font-family: 'Luckiest Guy', Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 800;
+}
+
+#topmenu li a {
+    color: #555555;
+    text-decoration: none;
+}
+
+#color_picker {
+    cursor: crosshair;
+    border: 1px solid black;
+    box-shadow:0 0 10px #210634;
 }
 
