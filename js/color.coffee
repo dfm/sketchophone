@@ -36,12 +36,9 @@ pick_new_color = (e) ->
     false
 
 $(document).ready(() ->
-    $menu_img = $("#color")
     $picker_img = $('#color_picker')
     $picker_img.hide()
     $picker_img.css('position','absolute')
-    $picker_img.css('left',$menu_img.offset().left+$menu_img.width()/2-$picker_img.width()/2+"px")
-    $picker_img.css('top',$menu_img.offset().top-$picker_img.height()-5+"px")
 
     $picker_img.mousedown((e) -> false)
     $picker_img.mousemove(pick_new_color)
@@ -54,6 +51,10 @@ $(document).ready(() ->
     color_picker = {color: "#000000"}
     color_picker.show = () ->
         if $picker_img?
+            $menu_img = $("#color")
+            $picker_img.css('left',$menu_img.offset().left+$menu_img.width()/2-$picker_img.width()/2+"px")
+            $picker_img.css('top',$menu_img.offset().top-$picker_img.height()-5+"px")
+            
             if colorTimeout?
                 clearTimeout(colorTimeout)
             color_picker.clicked = true
