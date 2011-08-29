@@ -12,16 +12,7 @@
 
     <meta name="description" content="">
     <meta name="author" content="Dan Foreman-Mackey">
-
-    <!--<meta name="robots" content="noindex" />-->
-
-    <!-- FACEBOOK Like buttons: http://developers.facebook.com/docs/reference/plugins/like/ -->
-    <!--<meta property="og:title" content="" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />-->
-
-    <!-- Use this url for this page... search engines
-    <link rel="canonical" href="" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <link href='http://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope' rel='stylesheet' type='text/css'>    
     <link href='http://fonts.googleapis.com/css?family=Luckiest+Guy' rel='stylesheet' type='text/css'>
@@ -32,23 +23,28 @@
     <script type="text/javascript" src="libs/modernizr.js"></script>
 </head>
 <body>
-
+    <header>            
+        <div>
+            <p><span>"The monkey ate the purple rhinoceros"</span></p>
+        </div>
+    </header>    
     <div id="container">
-        <header>            
-            <p><span id="draw">Draw:</span> "The monkey ate the purple rhinoceros" <span id="here">here...</span></p>
-            <img id="arrow" src="images/arrow.png" style="display: none;" />
-        </header>
-        <canvas id="canvas" width="485" height="300"></canvas>
-        <footer>
-            <ul id="topmenu">
-                <li><a href="javascript:undo_sketch();">Undo</a></li>
-                <li><a href="javascript:clear_sketch();">Clear</a></li>
-                <li><a href="javascript:color_picker.show();" id="color">Color</a></li>
-            </ul>
-            <img id="color_picker" src="images/hv.png" style="display: none;" />            
-        </footer>        
+        <div id="content">
+            <canvas id="canvas" width="10" height="10"></canvas>
+        </div>
     </div>
-
+    <!--<menu>
+        <div id="menu">
+            <ul id="menu">
+                <li id="undo">&#x238c;</li>
+                <li id="clear">Clear</li>
+                <li id="color">Color</li>
+                <li id="submit">Submit</li>
+            </ul>
+        </div>
+    </menu>-->
+    <img id="color_picker" src="images/hv.png" style="display: none;" />
+    
     <!-- Load JavaScript libraries
          Fall back on local copies if we have to -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
@@ -56,8 +52,8 @@
         window.jQuery || document.write('<script type="text/javascript" src="libs/jquery-1.6.2.min.js"><\/script>')
     </script>
 
-    <script type="text/javascript" src="libs/underscore-1.1.7.min.js"></script>
     <script type="text/javascript" src="js/color.js"></script>    
+    <script type="text/javascript" src="js/drawing.js"></script>
     <script type="text/javascript" src="js/sketchophone.js"></script>
 
     <!--<script>

@@ -52,8 +52,10 @@ $(document).ready(() ->
     color_picker.show = () ->
         if $picker_img?
             $menu_img = $("#color")
-            $picker_img.css('left',$menu_img.offset().left+$menu_img.width()/2-$picker_img.width()/2+"px")
-            $picker_img.css('top',$menu_img.offset().top-$picker_img.height()-5+"px")
+            $menu_img.addClass("selected")
+            $menu_box = $("#menu")
+            $picker_img.css('left',$menu_img.position().left+$menu_img.width()/2-$picker_img.width()/2+"px")
+            $picker_img.css('top',$menu_box.offset().top-$picker_img.height()+"px")
             
             if colorTimeout?
                 clearTimeout(colorTimeout)
@@ -73,6 +75,7 @@ $(document).ready(() ->
             )
     color_picker.hide = () ->
         if $picker_img?
+            $("#color").removeClass("selected")
             $picker_img.hide()
             if color_picker.timeout?
                 clearTimeout(color_picker.timeout)

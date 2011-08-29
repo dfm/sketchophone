@@ -1,36 +1,5 @@
-/*-------------------------------------------------------------
-      Reset, font normalization and base styles from
-      https://github.com/paulirish/html5-boilerplate
------------------------------------------------------------- */
-html, body, div, span, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
-small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block;
-}
-input, select { vertical-align: middle; }
-pre, code, kbd, samp {
-    font-family: monospace, sans-serif;
-}
-
-
-/* -------------- *
- * SKETCH-O-PHONE *
- * -------------- */
+@import "reset";
+@import "color";
 
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -38,55 +7,171 @@ body {
     line-height: 20px;
     font-weight: 100px;
     color: #333333;
-    margin: 0px;
+    background-color: #aaaaaa;
+    /*overflow-y: hidden;*/
 }
 
 header {
     text-align: center;
-}
-
-header p {
-    font-size: 28px;
-    line-height: 36px;
-    font-family: 'Annie Use Your Telescope', cursive;
-}
-
-header span {
-    font-size: 20px;
-}
-
-#container {
-    text-align: center;
+    position: absolute;
+    width: 100%;
+    div {
+        margin-top: 8px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        font-size: 18px;
+        line-height: 22px;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        color: #555555;
+        background-color: #eeeeee;
+        padding: 5px;
+        box-shadow: 2px 2px 5px #555555;
+        -webkit-box-shadow: 2px 2px 5px #555555;
+    }
 }
 
 #canvas {
+    background-color: #ffffff;
+    background-image: url('/images/grid.png');
     cursor: crosshair;
-    border: 1px dotted black;
+    /*border: 1px solid black;*/
     font-family:sans-serif;
+    box-shadow: 2px 2px 10px #555555;
+    -webkit-box-shadow: 2px 2px 10px #555555;
 }
 
-#topmenu {
+
+@menu_height: 40px;
+@menu_width: 75px;
+@n_menu_items: 4;
+
+#container {
+    text-align: center;
+    vertical-align: middle;
+    height: 100%;
+}
+#content {
+    position: relative;
+    top: 0px;
+    z-index: -1;
+}
+
+
+@menu_bkg_grad1: #085a9f;
+@menu_bkg_grad2: darken(#085a9f,10%);
+@shadow_color: #210634;
+
+menu {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: @menu_height;
+    overflow: hidden;
+    background-color: @menu_bkg_grad1;
+    background:-webkit-gradient(linear, left top, left bottom, from(@menu_bkg_grad1), to(@menu_bkg_grad2));
+    background:-moz-linear-gradient(top, @menu_bkg_grad1, @menu_bkg_grad2);
+    box-shadow:0 0 15px @shadow_color;
+}
+
+@amt: 10%;
+@col1: lighten(@menu_bkg_grad1,@amt);
+@col2: lighten(@menu_bkg_grad2,@amt);
+
+#menu {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    ul {
+        list-style: none;
+        display: table;
+        width: @n_menu_items * @menu_width;
+        height: @menu_height;
+        margin-left: auto;
+        margin-right: auto;
+        .selected {
+            background-color: @col1;
+            background:-webkit-gradient(linear, left top, left bottom, 
+                from(@col1), to(@col2));
+            background:-moz-linear-gradient(top, @col1, @col2);
+        }
+        li {
+            cursor: pointer;
+            display: table-cell; 
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            width: @menu_width;
+            color: #dddddd;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            line-height: 20px;
+            font-weight: 800;
+            text-shadow:0 0 10px @shadow_color;
+            &:hover {
+                .selected;
+            }
+        }
+    }
+}
+
+section {
     text-align: center;
 }
 
-#topmenu li {
-    margin-left: 5px;
-    margin-right: 10px;
-    display: inline;
-    font-family: 'Luckiest Guy', Helvetica, Arial, sans-serif;
-    font-size: 24px;
-    line-height: 30px;
-    font-weight: 800;
+button,
+input[type="reset"],
+input[type="submit"],
+input[type="button"] {
+    -webkit-appearance: none;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding;
+    background-clip: padding-box;
+    background-color: #ddd;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #ddd));
+    background: -moz-linear-gradient(top center, #fff 0%, #ddd 100%);
+    border: 1px solid;
+    border-color: #ddd #bbb #999;
+    cursor: pointer;
+    color: #333;
+    font: bold 24px 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+    outline: 0;
+    overflow: visible;
+    padding: 10px 20px;
+    text-shadow: #fff 0 1px 1px;
+    width: auto;
 }
 
-#topmenu li a {
-    color: #555555;
-    text-decoration: none;
+input[type="text"] {
+    -webkit-appearance: none;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding;
+    background-clip: padding-box;
+    background-color: #fff;
+    border: 1px solid;
+    border-color: #848484 #c1c1c1 #e1e1e1;
+    color: #000;
+    outline: 0;
+    padding: 2px 3px;
+    font: bold 24px Arial, 'Liberation Sans', FreeSans, sans-serif;
+    height: 50px;
+    text-align: center;
 }
 
-#color_picker {
-    cursor: crosshair;
-    border: 1px solid black;
-    box-shadow:0 0 10px #210634;
-}
+
 
