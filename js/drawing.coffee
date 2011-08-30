@@ -3,9 +3,11 @@ getTouchEvent = (touch) ->
     touch.originalEvent.touches[0] or touch.originalEvent.changedTouches[0]
 
 class Canvas
-    constructor: (@canvas) ->
+    constructor: (@container, @colorPicker) ->
+        $(this.container).append('<canvas id="canvas"></canvas>')
+        this.canvas       = $("#canvas").get(0)
         this.context      = context2D(this.canvas)
-        this.currentTool  = new Tool(this.context)
+        this.currentTool  = new Tool(this.context,this.colorPicker)
         this.undoStack    = new UndoStack(this)
         this.isPainting   = false
 
@@ -17,9 +19,9 @@ class Canvas
 
         # bind mousedown events
         thisCanvas = this
-        $(document)
+        $(this.canvas)
             .bind('touchstart',(touch) -> thisCanvas.mouseDown(getTouchEvent(touch),thisCanvas,touch))
-        $(document).mousedown((e) -> thisCanvas.mouseDown(e,thisCanvas))
+        $(this.canvas).mousedown((e) -> thisCanvas.mouseDown(e,thisCanvas))
 
         $(window).resize(() -> thisCanvas.resize(thisCanvas))
         this.resize()
@@ -27,7 +29,7 @@ class Canvas
     saveState: () ->
         this.state.width  = this.width()
         this.state.height = this.height()
-        this.stateContext.drawImage(canvas,0,0)
+        this.stateContext.drawImage(this.canvas,0,0)
 
     resize: (canvas=this) ->
         this.saveState()
@@ -39,9 +41,9 @@ class Canvas
         $canvas.attr('height',height)
         $canvas.css('height',height+"px")
         if height < $(window).height()
-            $('#content').css('top',($(window).height()-height)/2+"px")
+            $(this.container).css('top',($(window).height()-height)/2+"px")
         else
-            $('#content').css('top',"0px")
+            $(this.container).css('top',"0px")
         canvas.redraw()
         f = () -> window.scrollTo(0,1)
         setTimeout(f,1)
@@ -156,13 +158,13 @@ class UndoStack
             $(tmp_canvas).remove()
 
 class Tool
-    constructor: (@context) ->
+    constructor: (@context,@colorPicker) ->
         this.currentPosition  = undefined
         this.previousPosition = undefined
         this.currentPath      = undefined
 
     setLineStyles: () ->
-        this.context.strokeStyle = color_picker.color || 'black'
+        this.context.strokeStyle = this.colorPicker.color || 'black'
         this.context.lineWidth = 3
         this.context.lineJoin = "round"
         this.context.lineCap = "round"

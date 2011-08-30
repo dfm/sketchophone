@@ -14,37 +14,33 @@
     <meta name="author" content="Dan Foreman-Mackey">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <link href='http://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope' rel='stylesheet' type='text/css'>    
-    <link href='http://fonts.googleapis.com/css?family=Luckiest+Guy' rel='stylesheet' type='text/css'>
-
     <link rel="stylesheet/less" type="text/css" href="css/sketchophone.less" />
     <script type="text/javascript" src="libs/less-1.1.3.min.js"></script>
     
     <script type="text/javascript" src="libs/modernizr.js"></script>
 </head>
 <body>
+    <div id="container">
+        <div id="content">
+            <!--<canvas id="canvas" width="10" height="10"></canvas>-->
+        </div>
+    </div>
     <header>            
         <div>
             <p><span>"The monkey ate the purple rhinoceros"</span></p>
         </div>
     </header>    
-    <div id="container">
-        <div id="content">
-            <canvas id="canvas" width="10" height="10"></canvas>
-        </div>
+    <div id="menu">
+        <ul id="menu">
+            <li id="undo"><span>Undo</span></li>
+            <li id="clear"><span>Clear</span></li>
+            <li id="color"><span>Color</span></li>
+            <li id="submit"><span>Submit</span></li>
+        </ul>
     </div>
-    <!--<menu>
-        <div id="menu">
-            <ul id="menu">
-                <li id="undo">&#x238c;</li>
-                <li id="clear">Clear</li>
-                <li id="color">Color</li>
-                <li id="submit">Submit</li>
-            </ul>
-        </div>
-    </menu>-->
+    <div id="arrow"><span>&gt;</span></div>
     <img id="color_picker" src="images/hv.png" style="display: none;" />
-    
+
     <!-- Load JavaScript libraries
          Fall back on local copies if we have to -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>

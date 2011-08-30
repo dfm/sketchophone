@@ -16,77 +16,61 @@ hsv2rgb = (h,s,v) ->
         when 5 then [v,p,q]
         else [0,0,0]
 
-$picker_img = undefined
-color_picker = undefined
-colorTimeout = undefined
 factor = 255
-tohex = (r) -> (0+parseInt(factor*r).toString(16)).slice(-2)
-pick_new_color = (e) ->
-    if color_picker.clicked
-        offset = $picker_img.offset()
-        x = e.pageX-offset.left
-        y = e.pageY-offset.top
-        h = x/$picker_img.width()
-        s = 1.0
-        v = 1-y/$picker_img.height()
-        [r,g,b] = hsv2rgb(h,s,v)
-        color = '#'+tohex(r)+tohex(g)+tohex(b)
-        color_picker.color = color
-        $("#color").css('color':color_picker.color)
-    false
+tohex  = (r) -> (0+parseInt(factor*r).toString(16)).slice(-2)
 
-$(document).ready(() ->
-    $picker_img = $('#color_picker')
-    $picker_img.hide()
-    $picker_img.css('position','absolute')
+class ColorPicker
+    constructor: (@picker_img,@picker_button) ->
+        this.$picker = $(this.picker_img)
+        this.$button = $(this.picker_button)
+        thispicker = this
+        this.$button.mousedown((e) -> thispicker.toggle())
+        this.color   = "#000000"
+        this.clicked = false
 
-    $picker_img.mousedown((e) -> false)
-    $picker_img.mousemove(pick_new_color)
-    $picker_img.mouseup((e) ->
-        pick_new_color(e)
-        clicked = false
-        color_picker.hide()
-    )
-    
-    color_picker = {color: "#000000"}
-    color_picker.show = () ->
-        if $picker_img?
-            $menu_img = $("#color")
-            $menu_img.addClass("selected")
-            $menu_box = $("#menu")
-            $picker_img.css('left',$menu_img.position().left+$menu_img.width()/2-$picker_img.width()/2+"px")
-            $picker_img.css('top',$menu_box.offset().top-$picker_img.height()+"px")
-            
-            if colorTimeout?
-                clearTimeout(colorTimeout)
-            color_picker.clicked = true
-            $picker_img.show()
-            if color_picker.timeout?
-                clearTimeout(color_picker.timeout)
-            color_picker.timeout = setTimeout(color_picker.hide,3000)
-            $picker_img.mouseover((e) -> 
-                if color_picker.timeout?
-                    clearTimeout(color_picker.timeout)
-            )
-            $picker_img.mouseout((e) -> 
-                if color_picker.timeout?
-                    clearTimeout(color_picker.timeout)
-                color_picker.timeout = setTimeout(color_picker.hide,3000)
-            )
-    color_picker.hide = () ->
-        if $picker_img?
-            $("#color").removeClass("selected")
-            $picker_img.hide()
-            if color_picker.timeout?
-                clearTimeout(color_picker.timeout)
-            if colorTimeout?
-                clearTimeout(colorTimeout)
-    
-    $("#color").mouseover((e) ->
-        if colorTimeout?
-            clearTimeout(colorTimeout)
-        colorTimeout = setTimeout(color_picker.show,200)
-        $(this).mouseout((e) -> clearTimeout(colorTimeout))
-    )
-)
+        this.$picker.hide()
+        this.$picker.css('position','absolute')
+
+        this.$picker.mousedown((e) -> 
+            thispicker.clicked = true
+            return false
+        )
+        this.$picker.mousemove((e) -> thispicker.pick_new_color(e))
+        this.$picker.mouseup((e) -> 
+            thispicker.pick_new_color(e)
+            thispicker.clicked = false
+            thispicker.hide()
+        )
+
+    pick_new_color: (e) ->
+        if this.clicked
+            offset = this.$picker.offset()
+            x = e.pageX-offset.left
+            y = e.pageY-offset.top
+            h = x/this.$picker.width()
+            s = 1.0
+            v = 1-y/this.$picker.height()
+            [r,g,b] = hsv2rgb(h,s,v)
+            color = '#'+tohex(r)+tohex(g)+tohex(b)
+            this.color = color
+        return false
+
+    toggle: () ->
+        if this.clicked
+            this.hide()
+        else
+            this.show()
+
+    show: () ->
+        this.$button.addClass("selected")
+        bpos = this.$button.position()
+        moff = this.$button.offsetParent().offset()
+        this.$picker
+            .css('left',bpos.left+this.$button.width()/2-this.$picker.width()/2+"px")
+        this.$picker.css('top',moff.top-this.$picker.height()+"px")
+        this.$picker.show()
+
+    hide: () ->
+        this.$button.removeClass("selected")
+        this.$picker.hide()
 
